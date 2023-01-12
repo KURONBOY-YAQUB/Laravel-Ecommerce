@@ -62,6 +62,7 @@
     <!-- End custom js for this page-->
 
     @livewireScripts
+    @stack('scripts')
 </body>
 
 </html>
