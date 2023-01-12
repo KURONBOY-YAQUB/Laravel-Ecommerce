@@ -43,7 +43,7 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{ url('admin/brands') }}">
                 <i class="mdi mdi-menu menu-icon"></i>
                 <span class="menu-title">Brands</span>
             </a>
