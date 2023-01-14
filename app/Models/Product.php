@@ -2,36 +2,41 @@
 
 namespace App\Models;
 
-use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Category extends Model
+class Product extends Model
 {
     use HasFactory;
 
-    protected $table = 'categories';
+    protected $table = 'products';
 
     protected $fillable = [
+        'category_id',
         'name',
         'slug',
+        'brand',
+        'small_description',
         'description',
-        'image',
+        'original_price',
+        'selling_price',
+        'quantity',
+        'trending',
+        'status',
         'meta_title',
         'meta_keyword',
         'meta_description',
-        'status',
     ];
 
     /**
-     * Get all of the products for the Category
+     * Get all of the productImages for the Product
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function products(): HasMany
+    public function productImages(): HasMany
     {
-        return $this->hasMany(Product::class, 'category_id', 'id');
+        return $this->hasMany(ProductImage::class, 'product_id', 'id');
     }
-
 }
