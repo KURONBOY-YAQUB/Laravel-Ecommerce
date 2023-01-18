@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Brand;
+use App\Models\Color;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Support\Str;
@@ -24,9 +25,11 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $brands = Brand::all();
+        $colors = Color::where('status', '0')->get();
         return view('admin.product.create',
                 ['categories' => $categories,
-                'brands' => $brands]);
+                'brands' => $brands,
+                'colors' => $colors]);
     }
 
     public function store(ProductFormRequest $request)
@@ -65,6 +68,16 @@ class ProductController extends Controller
                 $product->productImages()->create([
                     'product_id' => $product->id,
                     'image' => $finalImagePathName,
+                ]);
+            }
+        }
+
+        if($request->colors) {
+            foreach($request->colors as $key => $color) {
+                $product->productColors()->create([
+                    'product_id' => $product->id,
+                    'color_id' => $color,
+                    'quantity' => $request->colorQuantity[$key] ?? 0,
                 ]);
             }
         }

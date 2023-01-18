@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Category;
+use App\Models\ProductColor;
 use App\Models\ProductImage;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -50,5 +51,15 @@ class Product extends Model
     public function productImages(): HasMany
     {
         return $this->hasMany(ProductImage::class, 'product_id', 'id');
+    }
+
+    /**
+     * Get all of the productColors for the Product
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function productColors(): HasMany
+    {
+        return $this->hasMany(ProductColor::class, 'product_id', 'id');
     }
 }

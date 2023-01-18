@@ -25,12 +25,13 @@
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
-                                    data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane"
-                                    aria-selected="true">Home</button>
+                                    data-bs-target="#home-tab-pane" type="button" role="tab"
+                                    aria-controls="home-tab-pane" aria-selected="true">Home</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="seotag-tab" data-bs-toggle="tab" data-bs-target="#seotag-tab-pane"
-                                    type="button" role="tab" aria-controls="seotag-tab-pane" aria-selected="false">SEO
+                                <button class="nav-link" id="seotag-tab" data-bs-toggle="tab"
+                                    data-bs-target="#seotag-tab-pane" type="button" role="tab"
+                                    aria-controls="seotag-tab-pane" aria-selected="false">SEO
                                     Tags</button>
                             </li>
                             <li class="nav-item" role="presentation">
@@ -43,10 +44,15 @@
                                     data-bs-target="#image-tab-pane" type="button" role="tab"
                                     aria-controls="image-tab-pane" aria-selected="false">Product Image</button>
                             </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="colors-tab" data-bs-toggle="tab"
+                                    data-bs-target="#colors-tab-pane" type="button" role="tab"
+                                    aria-controls="colors-tab-pane" aria-selected="false">Product Colors</button>
+                            </li>
                         </ul>
                         <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade border p-3 show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
-                                tabindex="0">
+                            <div class="tab-pane fade border p-3 show active" id="home-tab-pane" role="tabpanel"
+                                aria-labelledby="home-tab" tabindex="0">
                                 <div class="mb-3">
                                     <label>Category</label>
                                     <select name="category_id" class="form-control">
@@ -80,8 +86,8 @@
                                     <textarea name="description" class="form-control" rows="4"></textarea>
                                 </div>
                             </div>
-                            <div class="tab-pane fade border p-3" id="seotag-tab-pane" role="tabpanel" aria-labelledby="seotag-tab"
-                                tabindex="0">
+                            <div class="tab-pane fade border p-3" id="seotag-tab-pane" role="tabpanel"
+                                aria-labelledby="seotag-tab" tabindex="0">
                                 <div class="mb-3">
                                     <label>{Meta Title</label>
                                     <input type="text" name="meta_title" class="form-control">
@@ -95,8 +101,8 @@
                                     <textarea name="meta_description" class="form-control" rows="4"></textarea>
                                 </div>
                             </div>
-                            <div class="tab-pane fade border p-3" id="details-tab-pane" role="tabpanel" aria-labelledby="details-tab"
-                                tabindex="0">
+                            <div class="tab-pane fade border p-3" id="details-tab-pane" role="tabpanel"
+                                aria-labelledby="details-tab" tabindex="0">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="mb-3">
@@ -130,11 +136,34 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade border p-3" id="image-tab-pane" role="tabpanel" aria-labelledby="image-tab"
-                                tabindex="0">
+                            <div class="tab-pane fade border p-3" id="image-tab-pane" role="tabpanel"
+                                aria-labelledby="image-tab" tabindex="0">
                                 <div class="mb-3">
                                     <label>Upload Product Images</label>
                                     <input type="file" name="image[]" multiple class="form-control">
+                                </div>
+                            </div>
+                            <div class="tab-pane fade border p-3" id="colors-tab-pane" role="tabpanel"
+                                aria-labelledby="colors-tab" tabindex="0">
+                                <div class="mb-3">
+                                    <label>Select Color</label>
+                                    <hr>
+                                    <div class="row">
+                                        @forelse ($colors as $color)
+                                            <div class="col-md-3">
+                                                <div class="p-2 border">
+                                                    Color: <input type="checkbox" name="colors[{{ $color->id }}]"
+                                                        value="{{ $color->id }}"> {{ $color->name }}
+                                                    <br />
+                                                    Quantity: <input type="number"
+                                                        name="colorQuantity[{{ $color->id }}]"
+                                                        style="width: 70px; border: 1px solid">
+                                                </div>
+                                            </div>
+                                        @empty
+                                            <h3>No Colors</h3>
+                                        @endforelse
+                                    </div>
                                 </div>
                             </div>
                             <div>
