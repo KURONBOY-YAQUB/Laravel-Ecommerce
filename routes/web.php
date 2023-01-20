@@ -46,6 +46,9 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::get('/products/{product}/delete', 'destroy');
 
         Route::get('/product-image/{product_image_id}/delete', 'destroyImage');
+
+        Route::post('/product-color/{product_color_id}', 'updateProdColorQty');
+        Route::get('/product-color/{product_color_id}/delete', 'deleteProdColorQty');
     });
 
     // Colors Routes
@@ -58,3 +61,4 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::get('/colors/{color}/delete', 'destroy');
     });
 });
+
