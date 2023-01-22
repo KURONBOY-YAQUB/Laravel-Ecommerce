@@ -38,7 +38,7 @@ class SliderFormRequest extends FormRequest
                 'nullable'
             ],
             'image' => [
-                'required',
+                'nullable',
                 'image',
                 'mimes:png,jpg,jpeg'
             ],
