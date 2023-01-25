@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\Web\WebController::class, 'index']);
+Route::get('/collections', [App\Http\Controllers\Web\WebController::class, 'categories']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
