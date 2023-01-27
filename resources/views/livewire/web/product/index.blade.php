@@ -2,19 +2,21 @@
     <div class="row">
 
         <div class="col-md-3">
-            <div class="card">
-                <div class="card-header">
-                    <h4>Brands</h4>
+            @if ($category->brands)
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Brands</h4>
+                    </div>
+                    <div class="card-body">
+                        @foreach ($category->brands as $brand)
+                            <label class="d-block">
+                                <input type="checkbox" wire:model="brandInputs" value="{{ $brand->name }}" />
+                                {{ $brand->name }}
+                            </label>
+                        @endforeach
+                    </div>
                 </div>
-                <div class="card-body">
-                    @foreach ($category->brands as $brand)
-                        <label class="d-block">
-                            <input type="checkbox" wire:model="brandInputs" value="{{ $brand->name }}" />
-                            {{ $brand->name }}
-                        </label>
-                    @endforeach
-                </div>
-            </div>
+            @endif
         </div>
 
         <div class="col-md-9">
