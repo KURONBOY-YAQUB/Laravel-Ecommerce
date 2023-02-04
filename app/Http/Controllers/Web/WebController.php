@@ -31,4 +31,17 @@ class WebController extends Controller
             return redirect()->back();
         }
     }
+
+    public function productView(string $category_slug, string $product_slug)
+    {
+        $category = Category::where('slug', $category_slug)->first();
+
+        if ($category) {
+            $product = $category->products()->where('slug', $product_slug)->where('status', '0')->first();
+
+            return view('web.collection.products.view', compact('product', 'category'));
+        } else {
+            return redirect()->back();
+        }
+    }
 }
