@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class View extends Component
 {
-    public $category, $product, $productColorSelectedQuantity;
+    public $category, $product, $productColorSelectedQuantity, $productQuantity = 1;
 
     public function addToWishlist($productId)
     {
@@ -50,6 +50,20 @@ class View extends Component
                 'status' => 401
             ]);
             return false;
+        }
+    }
+
+    public function incrementQuantity()
+    {
+        if ($this->productQuantity < 10) {
+            $this->productQuantity++;
+        }
+    }
+
+    public function decrementQuantity()
+    {
+        if ($this->productQuantity > 1) {
+            $this->productQuantity--;
         }
     }
 
