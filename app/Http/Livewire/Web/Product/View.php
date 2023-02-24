@@ -31,6 +31,8 @@ class View extends Component
                     'product_id' => $productId,
                 ]);
 
+                $this->emit('wishListAddedOrUpdated');
+
                 session()->flash('message', 'Wishlist Added successfully');
                 $this->dispatchBrowserEvent('message', [
                     'text' => 'Wishlist Added successfully',
