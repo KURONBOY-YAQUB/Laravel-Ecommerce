@@ -21,7 +21,9 @@ Route::get('/collections', [App\Http\Controllers\Web\WebController::class, 'cate
 Route::get('/collections/{category_slug}', [App\Http\Controllers\Web\WebController::class, 'products']);
 Route::get('/collections/{category_slug}/{product_slug}', [App\Http\Controllers\Web\WebController::class, 'productView']);
 
-Route::get('/wishlist', [App\Http\Controllers\Web\Wishlist::class, 'index']);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/wishlist', [App\Http\Controllers\Web\Wishlist::class, 'index']);
+});
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
