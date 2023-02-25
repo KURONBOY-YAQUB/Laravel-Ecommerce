@@ -86,13 +86,13 @@ class View extends Component
             if ($this->product->where('id', $product_id)->where('status', '0')->exists())
             {
                 // Check for Product color quantity and to cart
-                if ($this->product->productColors()->count() > 1)
+                if ($this->product->productColors()->count() > 0)
                 {
                     if ($this->productColorSelectedQuantity != NULL)
                     {
                         if (Cart::where('user_id', auth()->user()->id)
                                     ->where('product_id', $product_id)
-                                    ->where('product_color_id', $productColorId)->exists())
+                                    ->where('product_color_id', $this->productColorId)->exists())
                         {
                             $this->dispatchBrowserEvent('message', [
                                 'text' => 'Product Already Added',
@@ -116,6 +116,8 @@ class View extends Component
                                     'product_color_id' => $this->productColorId,
                                     'quantity' => $this->productQuantity
                                 ]);
+
+                                $this->emit('cartUpdatedOrAdded');
                                 $this->dispatchBrowserEvent('message', [
                                     'text' => 'Product Added to Cart',
                                     'type' => 'success',
@@ -176,6 +178,8 @@ class View extends Component
                                     'product_id' => $product_id,
                                     'quantity' => $this->productQuantity
                                 ]);
+
+                                $this->emit('cartUpdatedOrAdded');
                                 $this->dispatchBrowserEvent('message', [
                                     'text' => 'Product Added to Cart',
                                     'type' => 'success',
