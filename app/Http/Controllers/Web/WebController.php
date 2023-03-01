@@ -44,4 +44,9 @@ class WebController extends Controller
             return redirect()->back();
         }
     }
+
+    public function thankyou()
+    {
+        return view('web.thank-you');
+    }
 }
